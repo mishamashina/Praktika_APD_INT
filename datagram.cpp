@@ -16,7 +16,7 @@
 // UZO
 #define UZO_ODK1_PDK1 0b0
 #define UZO_ODK2_PDK2 0b1
-// TANGENT - REMEMBER!!!!!!!!!!
+// TANGENT
 #define TANGENT_ON 0b1
 #define TANGENT_OFF 0b0
 // PHASING

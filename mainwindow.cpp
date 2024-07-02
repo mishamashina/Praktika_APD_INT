@@ -95,10 +95,10 @@ void MainWindow::Tangent(char data)
     switch (data)
     {
     case TANGENT_ON:
-        ui->lineEdit_6->setText(QString("Самостоятельное управление"));
+        ui->lineEdit_6->setText(QString("Сам. упр."));
         break;
     case TANGENT_OFF:
-        ui->lineEdit_6->setText(QString("Автоматическое управление"));
+        ui->lineEdit_6->setText(QString("Авт. упр."));
         break;
     }
 }

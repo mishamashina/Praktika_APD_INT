@@ -42,8 +42,8 @@ void UdpSocket::readDatagramAPD()
 //            datagramAPD.interaction_algorithm = 0b0110;
 //            datagramAPD.PDK = 0b01;
 //            datagramAPD.UZO = 0b01;
-            //datagramAPD.PDK_pause = 0x55;
-            //datagramAPD.manage_of_tangent = 0b01;
+//            datagramAPD.PDK_pause = 0x55;
+//            datagramAPD.manage_of_tangent = 0b01;
             //datagramAPD.plume = 0b01;
             //datagramAPD.V42_N400 = 0b1110;
             //datagramAPD.phasing = 0b00;
