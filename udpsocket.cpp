@@ -14,7 +14,7 @@ UdpSocket::UdpSocket()
 
 void UdpSocket::readDatagramAPD()
 {
-    qDebug() << "Размер полученной датаграммы =" << udpSocket->pendingDatagramSize();
+    //qDebug() << "Размер полученной датаграммы =" << udpSocket->pendingDatagramSize();
 
     if (flag)
     {

@@ -14,18 +14,26 @@ MainWindow::MainWindow(QWidget *parent)
     connect(udp, &UdpSocket::sendDatagramAPD, this, &MainWindow::getDatagramAPD);
 }
 
+void MainWindow::changeEvent(QEvent *event)
+{
+    qDebug() << event->type();
+}
+
 void MainWindow::Channel(char data)
 {
     switch (data)
     {
     case CHANNEL_C1_TCH_LVC:
         ui->lineEdit->setText(QString("С1-ТЧ|ЛВС"));
+        ui->radioButton->setChecked(true);
         break;
     case CHANNEL_C1_FL_LVC:
         ui->lineEdit->setText(QString("С1-ФЛ|ЛВС"));
+        ui->radioButton_2->setChecked(true);
         break;
     case CHANNEL_C1_TCH_C1_FL:
         ui->lineEdit->setText(QString("С1-ТЧ|С1-ФЛ"));
+        ui->radioButton_3->setChecked(true);
         break;
     }
 }
@@ -36,15 +44,19 @@ void MainWindow::InteractionAlgorithm(char data)
     {
     case INTERACTION_ALGORITHM_ODK_PDK:
         ui->lineEdit_2->setText(QString("Симплекс ОДК/ПДК"));
+        ui->radioButton_4->setChecked(true);
         break;
     case INTERACTION_ALGORITHM_DUPLEX_2:
         ui->lineEdit_2->setText(QString("Дуплекс 2"));
+        ui->radioButton_5->setChecked(true);
         break;
     case INTERACTION_ALGORITHM_5C55_ARAGVA:
         ui->lineEdit_2->setText(QString("5Ц55 Арагва"));
+        ui->radioButton_6->setChecked(true);
         break;
     case INTERACTION_ALGORITHM_V42:
         ui->lineEdit_2->setText(QString("V42"));
+        ui->radioButton_62->setChecked(true);
         break;
     }
 }
@@ -634,25 +646,9 @@ MainWindow::~MainWindow()
     qDebug() << udp->udpSocket->state();
 }
 
-void MainWindow::on_checkBox_stateChanged(int arg1)
-{
-    if (arg1 == 2)
-    {
-        udp->datagramAPD.plume = 0x01;
-        qDebug() << "udp->datagramAPD.plume = " << udp->datagramAPD.plume;
-    }
-    else
-    {
-        udp->datagramAPD.plume = 0x00;
-        qDebug() << "udp->datagramAPD.plume = " << udp->datagramAPD.plume;
-    }
-}
-
 void MainWindow::getDatagramAPD(DatagramAPD datagramAPD)
 {
-    qDebug() << "getDatagramAPD";
-    qDebug() << "channel" << datagramAPD.channel;
-    qDebug() << datagramAPD.start_byte << datagramAPD.end_byte;
+    datagramAPDMain = datagramAPD;
     Channel(datagramAPD.channel);
     InteractionAlgorithm(datagramAPD.interaction_algorithm);
     Plume(datagramAPD.plume);
@@ -738,24 +734,38 @@ void MainWindow::getDatagramAPD(DatagramAPD datagramAPD)
 
 void MainWindow::on_pushButton_clicked()
 {
-    qDebug() << "Отправка датаграммы";
-    DatagramAPD datagramAPD;
-    std::memset(&datagramAPD, 0, sizeof(datagramAPD));
-    datagramAPD.start_byte = START_BYTE;
-    datagramAPD.kod_byte = 0x02;
-    datagramAPD.plume = 0b0;
-    datagramAPD.interaction_algorithm = 0x7;
-    datagramAPD.end_byte = 0x05;
-    udp->printDatagramAPD(datagramAPD);
-//    for (int i = 0; i < 18; i++)
-//    {
-//        qDebug() << "datagramAPD" << Qt::hex << unsigned(reinterpret_cast<char*>(&datagramAPD)[i]);
-//    }
-                //"!\x82\x1C\x00\x00""b\x00\x04\x00\x18\x00\x00\x00\x00\x00\x00\x00\x05"
-                        // "21 82 1c 00 00 62 00 04 00 18 00 00 00 00 00 00 00 05"
+//    DatagramAPD datagramAPD;
+//    std::memset(&datagramAPD, 0, sizeof(datagramAPD));
+//    datagramAPD.start_byte = START_BYTE;
+//    datagramAPD.kod_byte = 0x02;
+//    datagramAPD.channel = 0b00;
+//    datagramAPD.plume = 0b0;
+//    datagramAPD.interaction_algorithm = 0x7;
+//    datagramAPD.end_byte = 0x05;
+//    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPD), 18);
+//    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
+//    //udp->printDatagramAPD(datagramAPD);
+////    char tmp[] = {0x21,0x02,0x1c,0x00,0x00,0x62,0x00,0x04,0x00,0x018,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x05};
+//    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
+}
 
-//    char tmp[] = {0x21,0x02,0x1c,0x00,0x00,0x62,0x00,0x04,0x00,0x018,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x05};
-//    udp->udpSocket->writeDatagram(tmp, 18, QHostAddress("192.168.5.2"), 12345);
-    udp->udpSocket->writeDatagram(reinterpret_cast<char*>(&datagramAPD), 18, QHostAddress("192.168.5.2"), 12345);
+
+void MainWindow::on_radioButton_clicked()
+{
+    datagramAPDMain.kod_byte = 0x02;
+    datagramAPDMain.channel = CHANNEL_C1_TCH_LVC;
+    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPDMain), 18);
+    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
+    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
+}
+
+
+void MainWindow::on_radioButton_2_clicked()
+{
+    datagramAPDMain.kod_byte = 0x02;
+    datagramAPDMain.channel = CHANNEL_C1_FL_LVC;
+    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPDMain), 18);
+    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
+    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
 }
 

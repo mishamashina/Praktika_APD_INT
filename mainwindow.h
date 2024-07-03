@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "udpsocket.h"
-#include "iostream"
+#include <iostream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,6 +16,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     UdpSocket *udp;
+    DatagramAPD datagramAPDMain;
+
+    void changeEvent(QEvent *event);
 
     void Channel(char data);
     void InteractionAlgorithm(char data);
@@ -53,10 +56,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_checkBox_stateChanged(int arg1);
     void getDatagramAPD(DatagramAPD datagramAPD);
 
     void on_pushButton_clicked();
+
+    void on_radioButton_clicked();
+
+    void on_radioButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
