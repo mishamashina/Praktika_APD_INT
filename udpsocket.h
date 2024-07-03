@@ -5,6 +5,7 @@
 #include "QDebug"
 #include <QNetworkDatagram>
 #include "datagram.cpp"
+#include <iostream>
 
 class UdpSocket: public QUdpSocket
 {
@@ -12,6 +13,7 @@ class UdpSocket: public QUdpSocket
 public:
     UdpSocket();
     void readDatagramAPD();
+    void printDatagramAPD(DatagramAPD datagramAPD);
     DatagramAPD convertTheDatagram(char* begin);
     DatagramAPD datagramAPD;
     QUdpSocket* udpSocket;

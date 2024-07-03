@@ -735,3 +735,27 @@ void MainWindow::getDatagramAPD(DatagramAPD datagramAPD)
     V42T400PDKTStart(datagramAPD.V_42_T400_PDK_T_start);
     V42T400PDKTStop(datagramAPD.V_42_T400_PDK_T_stop);
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    qDebug() << "Отправка датаграммы";
+    DatagramAPD datagramAPD;
+    std::memset(&datagramAPD, 0, sizeof(datagramAPD));
+    datagramAPD.start_byte = START_BYTE;
+    datagramAPD.kod_byte = 0x02;
+    datagramAPD.plume = 0b0;
+    datagramAPD.interaction_algorithm = 0x7;
+    datagramAPD.end_byte = 0x05;
+    udp->printDatagramAPD(datagramAPD);
+//    for (int i = 0; i < 18; i++)
+//    {
+//        qDebug() << "datagramAPD" << Qt::hex << unsigned(reinterpret_cast<char*>(&datagramAPD)[i]);
+//    }
+                //"!\x82\x1C\x00\x00""b\x00\x04\x00\x18\x00\x00\x00\x00\x00\x00\x00\x05"
+                        // "21 82 1c 00 00 62 00 04 00 18 00 00 00 00 00 00 00 05"
+
+//    char tmp[] = {0x21,0x02,0x1c,0x00,0x00,0x62,0x00,0x04,0x00,0x018,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x05};
+//    udp->udpSocket->writeDatagram(tmp, 18, QHostAddress("192.168.5.2"), 12345);
+    udp->udpSocket->writeDatagram(reinterpret_cast<char*>(&datagramAPD), 18, QHostAddress("192.168.5.2"), 12345);
+}
+

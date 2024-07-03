@@ -1,3 +1,5 @@
+//START_BYTE
+#define START_BYTE 0x21
 //channel
 #define CHANNEL_C1_TCH_LVC 0b00
 #define CHANNEL_C1_FL_LVC 0b01
