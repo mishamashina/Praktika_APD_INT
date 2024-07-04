@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
 #include "udpsocket.h"
 #include <iostream>
 
@@ -17,6 +18,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     UdpSocket *udp;
     DatagramAPD datagramAPDMain;
+    QTimer *timer;
 
     void Channel(char data);
     void InteractionAlgorithm(char data);
@@ -55,6 +57,8 @@ public:
 
 private slots:
     void getDatagramAPD(DatagramAPD datagramAPD);
+
+    void currentSituation();
 
     void on_pushButton_clicked();
 

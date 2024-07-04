@@ -8,11 +8,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     udp = new UdpSocket();
+    timer = new QTimer(this);
+
     if (udp->udpSocket->state() == QAbstractSocket::BoundState){ui->statusbar->showMessage(tr("Сокет привязан"));}
     else{ui->statusbar->showMessage(tr("Сокет не привязан"));}
 
     connect(udp, &UdpSocket::sendDatagramAPD, this, &MainWindow::getDatagramAPD);
     connect(this, &MainWindow::changeTab, ui->tabWidget, &QTabWidget::setCurrentIndex);
+    connect(timer, &QTimer::timeout, this, &MainWindow::currentSituation);
+    timer->start(500);
 }
 
 void MainWindow::Channel(char data)
@@ -63,9 +67,11 @@ void MainWindow::Plume(char data)
     {
     case PLUME_ON:
         ui->lineEdit_3->setText(QString("ВКЛ."));
+        ui->comboBox_8->setCurrentIndex(0);
         break;
     case PLUME_OFF:
         ui->lineEdit_3->setText(QString("ВЫКЛ."));
+        ui->comboBox_8->setCurrentIndex(1);
         break;
     }
 }
@@ -76,9 +82,11 @@ void MainWindow::PDK(char data)
     {
     case PDK_ODK:
         ui->lineEdit_4->setText(QString("ОДК"));
+        ui->radioButton_7->setChecked(true);
         break;
     case PDK_PDK:
         ui->lineEdit_4->setText(QString("ПДК"));
+        ui->radioButton_8->setChecked(true);
         break;
     }
 }
@@ -566,7 +574,7 @@ void MainWindow::PDKPause(char data)
     switch (data)
     {
     case PDK_PAUSE:
-        ui->lineEdit_28->setText(QString("Точки (0x55)"));
+        ui->lineEdit_28->setText(QString("Точки"));
         break;
     }
 }
@@ -799,18 +807,64 @@ void MainWindow::getDatagramAPD(DatagramAPD datagramAPD)
     V42T400PDKTStop(datagramAPD.V_42_T400_PDK_T_stop);
 }
 
+void MainWindow::currentSituation()
+{
+    if (ui->radioButton_4->isChecked())
+    {
+        ui->groupBox_4->setVisible(true);
+        ui->groupBox_5->setVisible(true);
+    }
+    else
+    {
+        ui->groupBox_4->setVisible(false);
+        ui->groupBox_5->setVisible(false);
+    }
+}
+
 void MainWindow::on_pushButton_clicked()
 {
     datagramAPDMain.kod_byte = 0x02;
+    datagramAPDMain.PDK_pause = 0x55;
     // channel
     if (ui->radioButton->isChecked()){datagramAPDMain.channel = CHANNEL_C1_TCH_LVC;}
     if (ui->radioButton_2->isChecked()){datagramAPDMain.channel = CHANNEL_C1_FL_LVC;}
     if (ui->radioButton_3->isChecked()){datagramAPDMain.channel = CHANNEL_C1_TCH_C1_FL;}
     // interaction_algorithm
-    if (ui->radioButton_4->isChecked()){datagramAPDMain.interaction_algorithm = INTERACTION_ALGORITHM_ODK_PDK;}
+    if (ui->radioButton_4->isChecked())
+    {
+        datagramAPDMain.interaction_algorithm = INTERACTION_ALGORITHM_ODK_PDK;
+        if (ui->radioButton_7->isChecked()) //ODK
+        {
+            datagramAPDMain.PDK = PDK_ODK;
+            if (ui->radioButton_9->isChecked())// ODK1/PDK1
+            {
+                datagramAPDMain.UZO = UZO_ODK1_PDK1;
+            }
+            else
+            {
+                datagramAPDMain.UZO = UZO_ODK2_PDK2;
+            }
+        }
+        else
+        {
+            datagramAPDMain.PDK = PDK_PDK;
+            if (ui->radioButton_9->isChecked())
+            {
+                datagramAPDMain.UZO = UZO_ODK1_PDK1;
+            }
+            else
+            {
+                datagramAPDMain.UZO = UZO_ODK2_PDK2;
+            }
+        }
+    }
     if (ui->radioButton_5->isChecked()){datagramAPDMain.interaction_algorithm = INTERACTION_ALGORITHM_DUPLEX_2;}
     if (ui->radioButton_6->isChecked()){datagramAPDMain.interaction_algorithm = INTERACTION_ALGORITHM_5C55_ARAGVA;}
     if (ui->radioButton_62->isChecked()){datagramAPDMain.interaction_algorithm = INTERACTION_ALGORITHM_V42;}
+    // plume
+    if (ui->comboBox_8->currentText() == QString("ВКЛ.")){datagramAPDMain.plume = PLUME_ON;}
+    else {datagramAPDMain.plume = PLUME_OFF;}
+    // PDK
 
 
 
