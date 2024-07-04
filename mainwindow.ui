@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
+    <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
        <number>1</number>
@@ -405,7 +405,7 @@
           <item row="8" column="0">
            <widget class="QLabel" name="label_11">
             <property name="text">
-             <string>Частота несущей (С1-ТЧ и 9600 V29 и 7200 V29 и 4800 V29):</string>
+             <string>Частота несущей (С1-ТЧ):</string>
             </property>
            </widget>
           </item>
@@ -671,69 +671,11 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>10</y>
-          <width>278</width>
-          <height>98</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_16">
-         <item row="0" column="0">
-          <widget class="QGroupBox" name="groupBox_4">
-           <property name="title">
-            <string>Уточнение Симплекс</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="radioButton_7">
-              <property name="text">
-               <string>ОДК</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="radioButton_8">
-              <property name="text">
-               <string>ПДК</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QGroupBox" name="groupBox_5">
-           <property name="title">
-            <string>УЗО Симплекс</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_5">
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="radioButton_9">
-              <property name="text">
-               <string>ОДК1/ПДК1</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="radioButton_10">
-              <property name="text">
-               <string>ОДК2/ПДК2</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
        <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>920</x>
-          <y>500</y>
+          <x>800</x>
+          <y>440</y>
           <width>221</width>
           <height>121</height>
          </rect>
@@ -866,24 +808,267 @@
        <widget class="QGroupBox" name="groupBox_15">
         <property name="geometry">
          <rect>
-          <x>330</x>
-          <y>200</y>
-          <width>346</width>
+          <x>480</x>
+          <y>730</y>
+          <width>192</width>
+          <height>69</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>С1-ФЛ</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_6">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_42">
+           <property name="text">
+            <string>Скорость С1-ФЛ:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboBox_3">
+           <item>
+            <property name="text">
+             <string>9600</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>4800</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>2400</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1200</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>600</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>19200</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>16000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>32000</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>48000</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>470</y>
+          <width>165</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Списки состояния</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_7">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_47">
+           <property name="text">
+            <string>Шлейф:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboBox_8">
+           <item>
+            <property name="text">
+             <string>ВКЛ.</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ВЫКЛ.</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_50">
+           <property name="text">
+            <string>Скремблер:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="comboBox_11">
+           <item>
+            <property name="text">
+             <string>ВКЛ.</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ВЫКЛ.</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_6">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>590</y>
+          <width>260</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Списик короткие</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_8">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_57">
+           <property name="text">
+            <string>Формат 5Ц55 &quot;Арагва&quot;:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboBox_18">
+           <item>
+            <property name="text">
+             <string>17 байт</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>18 байт</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_58">
+           <property name="text">
+            <string>Режим ответа V42:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="comboBox_19">
+           <item>
+            <property name="text">
+             <string>Инициатор</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ответчик</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_7">
+        <property name="geometry">
+         <rect>
+          <x>710</x>
+          <y>590</y>
+          <width>389</width>
+          <height>96</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Инверсия передачи</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_9">
+         <item row="0" column="0">
+          <widget class="QRadioButton" name="radioButton_63">
+           <property name="text">
+            <string>Данные от ООД поступают в канал без инверсии</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QRadioButton" name="radioButton_64">
+           <property name="text">
+            <string>Данные от ООД перед передачей в канал инвертируются</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_8">
+        <property name="geometry">
+         <rect>
+          <x>710</x>
+          <y>700</y>
+          <width>389</width>
+          <height>96</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Инверсия приема</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_10">
+         <item row="0" column="0">
+          <widget class="QRadioButton" name="radioButton_65">
+           <property name="text">
+            <string>Данные к ООД поступают из канала без инверсии</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QRadioButton" name="radioButton_66">
+           <property name="text">
+            <string>Данные из канала перед отправкой к ООД инвертируются</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_9">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>10</y>
+          <width>310</width>
           <height>255</height>
          </rect>
         </property>
         <property name="title">
-         <string>Списки</string>
+         <string>С1-ТЧ</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_6">
-         <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_11">
+         <item row="0" column="0" colspan="2">
           <widget class="QLabel" name="label_40">
            <property name="text">
             <string>Скорость и вид модуляции С1-ТЧ:</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
+         <item row="0" column="2" colspan="2">
           <widget class="QComboBox" name="comboBox">
            <item>
             <property name="text">
@@ -927,14 +1112,14 @@
            </item>
           </widget>
          </item>
-         <item row="1" column="0">
+         <item row="1" column="0" colspan="2">
           <widget class="QLabel" name="label_41">
            <property name="text">
             <string>Уровень передачи С1-ТЧ:</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="1" column="2" colspan="2">
           <widget class="QComboBox" name="comboBox_2">
            <item>
             <property name="text">
@@ -1019,69 +1204,133 @@
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="label_42">
+          <widget class="QLabel" name="label_55">
            <property name="text">
-            <string>Скорость С1-ФЛ:</string>
+            <string>Вид модуляции:</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="comboBox_3">
+         <item row="2" column="1" colspan="3">
+          <widget class="QComboBox" name="comboBox_16">
            <item>
             <property name="text">
-             <string>9600</string>
+             <string>Альтернатива В</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>4800</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>2400</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>1200</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>600</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>19200</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>16000</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>32000</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>48000</string>
+             <string>Альтернатива А</string>
             </property>
            </item>
           </widget>
          </item>
          <item row="3" column="0">
-          <widget class="QLabel" name="label_43">
+          <widget class="QLabel" name="label_56">
            <property name="text">
-            <string>Длина блока:</string>
+            <string>Частота несущей:</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
+         <item row="3" column="1" colspan="3">
+          <widget class="QComboBox" name="comboBox_17">
+           <item>
+            <property name="text">
+             <string>1800 Гц</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1700 Гц</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="3">
+          <widget class="QLabel" name="label_51">
+           <property name="text">
+            <string>Адаптация корректора:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QComboBox" name="comboBox_12">
+           <item>
+            <property name="text">
+             <string>ВКЛ.</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ВЫКЛ.</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="3">
+          <widget class="QLabel" name="label_52">
+           <property name="text">
+            <string>Корректор кабеля на передаче:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="QComboBox" name="comboBox_13">
+           <item>
+            <property name="text">
+             <string>ВКЛ.</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ВЫКЛ.</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="3">
+          <widget class="QLabel" name="label_53">
+           <property name="text">
+            <string>Корректор кабеля на приеме:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="3">
+          <widget class="QComboBox" name="comboBox_14">
+           <item>
+            <property name="text">
+             <string>ВКЛ.</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ВЫКЛ.</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_10">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>180</y>
+          <width>327</width>
+          <height>266</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Симплекс</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_12">
+         <item row="3" column="0" colspan="3">
+          <widget class="QLabel" name="label_48">
+           <property name="text">
+            <string>Автоматическая тангента:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2" colspan="2">
           <widget class="QComboBox" name="comboBox_4">
            <item>
             <property name="text">
@@ -1100,14 +1349,142 @@
            </item>
           </widget>
          </item>
-         <item row="4" column="0">
+         <item row="0" column="0" colspan="4">
+          <layout class="QGridLayout" name="gridLayout_16">
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBox_4">
+             <property name="title">
+              <string>Уточнение Симплекс</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_4">
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="radioButton_7">
+                <property name="text">
+                 <string>ОДК</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QRadioButton" name="radioButton_8">
+                <property name="text">
+                 <string>ПДК</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QGroupBox" name="groupBox_5">
+             <property name="title">
+              <string>УЗО Симплекс</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_5">
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="radioButton_9">
+                <property name="text">
+                 <string>ОДК1/ПДК1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QRadioButton" name="radioButton_10">
+                <property name="text">
+                 <string>ОДК2/ПДК2</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="4" column="3">
+          <widget class="QComboBox" name="comboBox_10">
+           <item>
+            <property name="text">
+             <string>ВКЛ.</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ВЫКЛ.</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QComboBox" name="comboBox_9">
+           <item>
+            <property name="text">
+             <string>Сам. упр.</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Авт. упр.</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="1" colspan="3">
+          <widget class="QComboBox" name="comboBox_15">
+           <item>
+            <property name="text">
+             <string>Однократный</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Периодический</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_54">
+           <property name="text">
+            <string>Фазирование:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="3">
+          <widget class="QLabel" name="label_49">
+           <property name="text">
+            <string>Управление тангентой:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QLabel" name="label_43">
+           <property name="text">
+            <string>Длина блока:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_11">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>280</y>
+          <width>297</width>
+          <height>162</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Дуплекс 2</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_13">
+         <item row="0" column="0">
           <widget class="QLabel" name="label_44">
            <property name="text">
             <string>Число перезапросов:</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
+         <item row="0" column="1">
           <widget class="QComboBox" name="comboBox_5">
            <item>
             <property name="text">
@@ -1131,14 +1508,14 @@
            </item>
           </widget>
          </item>
-         <item row="5" column="0">
+         <item row="1" column="0">
           <widget class="QLabel" name="label_45">
            <property name="text">
             <string>Критерий расфазировки:</string>
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
+         <item row="1" column="1">
           <widget class="QComboBox" name="comboBox_6">
            <item>
             <property name="text">
@@ -1182,14 +1559,14 @@
            </item>
           </widget>
          </item>
-         <item row="6" column="0">
+         <item row="2" column="0">
           <widget class="QLabel" name="label_46">
            <property name="text">
             <string>Глубина блокировки:</string>
            </property>
           </widget>
          </item>
-         <item row="6" column="1">
+         <item row="2" column="1">
           <widget class="QComboBox" name="comboBox_7">
            <item>
             <property name="text">
@@ -1208,344 +1585,30 @@
            </item>
           </widget>
          </item>
-        </layout>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>200</y>
-          <width>301</width>
-          <height>255</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Списки состояния</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_7">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_47">
-           <property name="text">
-            <string>Шлейф:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="comboBox_8">
-           <item>
-            <property name="text">
-             <string>ВКЛ.</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>ВЫКЛ.</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_48">
-           <property name="text">
-            <string>Автоматическая тангента:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="comboBox_9">
-           <item>
-            <property name="text">
-             <string>Сам. упр.</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Авт. упр.</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_49">
-           <property name="text">
-            <string>Управление тангентой:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="comboBox_10">
-           <item>
-            <property name="text">
-             <string>ВКЛ.</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>ВЫКЛ.</string>
-            </property>
-           </item>
-          </widget>
-         </item>
          <item row="3" column="0">
-          <widget class="QLabel" name="label_50">
+          <widget class="QLabel" name="label_59">
            <property name="text">
-            <string>Скремблер:</string>
+            <string>Длина блока:</string>
            </property>
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QComboBox" name="comboBox_11">
+          <widget class="QComboBox" name="comboBox_20">
            <item>
             <property name="text">
-             <string>ВКЛ.</string>
+             <string>6|48/65</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>ВЫКЛ.</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_51">
-           <property name="text">
-            <string>Адаптация корректора:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QComboBox" name="comboBox_12">
-           <item>
-            <property name="text">
-             <string>ВКЛ.</string>
+             <string>12|96/117</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>ВЫКЛ.</string>
+             <string>18|144/165</string>
             </property>
            </item>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_52">
-           <property name="text">
-            <string>Корректор кабеля на передаче:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QComboBox" name="comboBox_13">
-           <item>
-            <property name="text">
-             <string>ВКЛ.</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>ВЫКЛ.</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_53">
-           <property name="text">
-            <string>Корректор кабеля на приеме:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QComboBox" name="comboBox_14">
-           <item>
-            <property name="text">
-             <string>ВКЛ.</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>ВЫКЛ.</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_6">
-        <property name="geometry">
-         <rect>
-          <x>710</x>
-          <y>260</y>
-          <width>288</width>
-          <height>193</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Списик короткие</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_8">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_54">
-           <property name="text">
-            <string>Фазирование:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="comboBox_15">
-           <item>
-            <property name="text">
-             <string>Однократный</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Периодический</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_55">
-           <property name="text">
-            <string>Вид модуляции:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="comboBox_16">
-           <item>
-            <property name="text">
-             <string>Альтернатива В</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Альтернатива А</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_56">
-           <property name="text">
-            <string>Частота несущей:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="comboBox_17">
-           <item>
-            <property name="text">
-             <string>1800 Гц</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>1700 Гц</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_57">
-           <property name="text">
-            <string>Формат 5Ц55 &quot;Арагва&quot;:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="comboBox_18">
-           <item>
-            <property name="text">
-             <string>17 байт</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>18 байт</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_58">
-           <property name="text">
-            <string>Режим ответа V42:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QComboBox" name="comboBox_19">
-           <item>
-            <property name="text">
-             <string>Инициатор</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Ответчик</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_7">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>480</y>
-          <width>389</width>
-          <height>96</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Инверсия передачи</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_9">
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="radioButton_63">
-           <property name="text">
-            <string>Данные от ООД поступают в канал без инверсии</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QRadioButton" name="radioButton_64">
-           <property name="text">
-            <string>Данные от ООД перед передачей в канал инвертируются</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_8">
-        <property name="geometry">
-         <rect>
-          <x>430</x>
-          <y>480</y>
-          <width>389</width>
-          <height>96</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Инверсия приема</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_10">
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="radioButton_65">
-           <property name="text">
-            <string>Данные к ООД поступают из канала без инверсии</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QRadioButton" name="radioButton_66">
-           <property name="text">
-            <string>Данные из канала перед отправкой к ООД инвертируются</string>
-           </property>
           </widget>
          </item>
         </layout>

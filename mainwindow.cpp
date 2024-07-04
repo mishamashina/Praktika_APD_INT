@@ -809,15 +809,32 @@ void MainWindow::getDatagramAPD(DatagramAPD datagramAPD)
 
 void MainWindow::currentSituation()
 {
-    if (ui->radioButton_4->isChecked())
+    //c1t4
+    if (ui->radioButton->isChecked() || ui->radioButton_3->isChecked())
     {
-        ui->groupBox_4->setVisible(true);
-        ui->groupBox_5->setVisible(true);
+        ui->groupBox_9->setVisible(true);
     }
     else
     {
-        ui->groupBox_4->setVisible(false);
-        ui->groupBox_5->setVisible(false);
+        ui->groupBox_9->setVisible(false);
+    }
+    ///simpleks
+    if (ui->radioButton_4->isChecked())
+    {
+        ui->groupBox_10->setVisible(true);
+    }
+    else
+    {
+        ui->groupBox_10->setVisible(false);
+    }
+    ///dupleks
+    if (ui->radioButton_5->isChecked())
+    {
+        ui->groupBox_11->setVisible(true);
+    }
+    else
+    {
+        ui->groupBox_11->setVisible(false);
     }
 }
 
@@ -826,7 +843,19 @@ void MainWindow::on_pushButton_clicked()
     datagramAPDMain.kod_byte = 0x02;
     datagramAPDMain.PDK_pause = 0x55;
     // channel
-    if (ui->radioButton->isChecked()){datagramAPDMain.channel = CHANNEL_C1_TCH_LVC;}
+    //С1-ТЧ
+    if (ui->radioButton->isChecked())
+    {
+        datagramAPDMain.channel = CHANNEL_C1_TCH_LVC;
+        if (ui->comboBox->currentText() == QString("9600 V29")){datagramAPDMain.speed_and_type_of_modulation_С1_TCH = SPEED_AND_TYPE_OF_MODULATION_С1_TCH_1;}
+        else if (ui->comboBox->currentText() == QString("7200 V29")){datagramAPDMain.speed_and_type_of_modulation_С1_TCH = SPEED_AND_TYPE_OF_MODULATION_С1_TCH_2;}
+        else if (ui->comboBox->currentText() == QString("4800 V29")){datagramAPDMain.speed_and_type_of_modulation_С1_TCH = SPEED_AND_TYPE_OF_MODULATION_С1_TCH_3;}
+        else if (ui->comboBox->currentText() == QString("4800 V27")){datagramAPDMain.speed_and_type_of_modulation_С1_TCH = SPEED_AND_TYPE_OF_MODULATION_С1_TCH_4;}
+        else if (ui->comboBox->currentText() == QString("2400 V26")){datagramAPDMain.speed_and_type_of_modulation_С1_TCH = SPEED_AND_TYPE_OF_MODULATION_С1_TCH_5;}
+        else if (ui->comboBox->currentText() == QString("1200 V26")){datagramAPDMain.speed_and_type_of_modulation_С1_TCH = SPEED_AND_TYPE_OF_MODULATION_С1_TCH_6;}
+        else if (ui->comboBox->currentText() == QString("1200 V23")){datagramAPDMain.speed_and_type_of_modulation_С1_TCH = SPEED_AND_TYPE_OF_MODULATION_С1_TCH_7;}
+        else {datagramAPDMain.speed_and_type_of_modulation_С1_TCH = SPEED_AND_TYPE_OF_MODULATION_С1_TCH_8;}
+    }
     if (ui->radioButton_2->isChecked()){datagramAPDMain.channel = CHANNEL_C1_FL_LVC;}
     if (ui->radioButton_3->isChecked()){datagramAPDMain.channel = CHANNEL_C1_TCH_C1_FL;}
     // interaction_algorithm
