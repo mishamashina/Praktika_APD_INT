@@ -12,11 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     else{ui->statusbar->showMessage(tr("Сокет не привязан"));}
 
     connect(udp, &UdpSocket::sendDatagramAPD, this, &MainWindow::getDatagramAPD);
-}
-
-void MainWindow::changeEvent(QEvent *event)
-{
-    qDebug() << event->type();
+    connect(this, &MainWindow::changeTab, ui->tabWidget, &QTabWidget::setCurrentIndex);
 }
 
 void MainWindow::Channel(char data)
@@ -594,9 +590,13 @@ void MainWindow::V42T400PDKTStart(char data)
         {
             ui->lineEdit_30->setText(QString("2 секунды"));
         }
-        if ((ui->lineEdit_5->text() == QString("ПДК1") || ui->lineEdit_5->text() == QString("ПДК2")) && ui->lineEdit_17->text() == QString("ВКЛ."))
+        else if ((ui->lineEdit_5->text() == QString("ПДК1") || ui->lineEdit_5->text() == QString("ПДК2")) && ui->lineEdit_17->text() == QString("ВКЛ."))
         {
             ui->lineEdit_30->setText(QString("20 мс"));
+        }
+        else
+        {
+            ui->lineEdit_30->clear();
         }
         break;
     }
@@ -611,9 +611,13 @@ void MainWindow::V42T400PDKTStop(char data)
         {
             ui->lineEdit_31->setText(QString("5 секунд"));
         }
-        if ((ui->lineEdit_5->text() == QString("ПДК1") || ui->lineEdit_5->text() == QString("ПДК2")) && ui->lineEdit_17->text() == QString("ВКЛ."))
+        else if ((ui->lineEdit_5->text() == QString("ПДК1") || ui->lineEdit_5->text() == QString("ПДК2")) && ui->lineEdit_17->text() == QString("ВКЛ."))
         {
             ui->lineEdit_31->setText(QString("30 мс"));
+        }
+        else
+        {
+            ui->lineEdit_31->clear();
         }
         break;
     }
@@ -649,84 +653,147 @@ MainWindow::~MainWindow()
 void MainWindow::getDatagramAPD(DatagramAPD datagramAPD)
 {
     datagramAPDMain = datagramAPD;
+
     Channel(datagramAPD.channel);
     InteractionAlgorithm(datagramAPD.interaction_algorithm);
     Plume(datagramAPD.plume);
     if (ui->lineEdit_2->text() == QString("Симплекс ОДК/ПДК"))
     {
         // проверка симплекс
-        PDK(datagramAPD.PDK);
-        UZO(datagramAPD.UZO);
+        PDK(datagramAPD.PDK); // 4
+        UZO(datagramAPD.UZO); // 5
+    }
+    else
+    {
+        ui->lineEdit_4->clear();
+        ui->lineEdit_5->clear();
     }
     if (ui->lineEdit_5->text() == QString("ПДК1") || ui->lineEdit_5->text() == QString("ПДК2"))
     {
         // проверка пдк1 и пдк2
-        ManageOfTangent(datagramAPD.manage_of_tangent);
+        ManageOfTangent(datagramAPD.manage_of_tangent); // 17
         if (ui->lineEdit_17->text() == QString("ВКЛ."))
         {
             // проверка включена ли тангента
-            Tangent(datagramAPD.tangent);
+            Tangent(datagramAPD.tangent); // 6
         }
-        Phasing(datagramAPD.phasing);
-        PDKPause(datagramAPD.PDK_pause);
+        else
+        {
+            ui->lineEdit_6->clear();
+        }
+        Phasing(datagramAPD.phasing); // 7
+        PDKPause(datagramAPD.PDK_pause);// 28
+    }
+    else
+    {
+        ui->lineEdit_17->clear();
+        ui->lineEdit_7->clear();
+        ui->lineEdit_28->clear();
     }
     if (ui->lineEdit->text() == QString("С1-ТЧ|ЛВС") || ui->lineEdit->text() == QString("С1-ТЧ|С1-ФЛ"))
     {
         // проверка канала С1-ТЧ
-        SpeedAndTypeOfModulationС1TCH(datagramAPD.speed_and_type_of_modulation_С1_TCH);
-        TransmissionLevelC1TCH(datagramAPD.transmission_level_C1_TCH);
+        SpeedAndTypeOfModulationС1TCH(datagramAPD.speed_and_type_of_modulation_С1_TCH); //8
+        TransmissionLevelC1TCH(datagramAPD.transmission_level_C1_TCH); //9
         if (ui->lineEdit_8->text() == QString("2400 V26") || ui->lineEdit_8->text() == QString("1200 V26"))
         {
             // проверка скорости
-            ModuleV26(datagramAPD.module_V26);
+            ModuleV26(datagramAPD.module_V26);//10
+        }
+        else
+        {
+            ui->lineEdit_10->clear();
         }
         if (ui->lineEdit_8->text() == QString("9600 V29") || ui->lineEdit_8->text() == QString("7200 V29") || ui->lineEdit_8->text() == QString("4800 V29"))
         {
             // проверка скорости
-            FrequenceV29(datagramAPD.frequence_V29);
-            // спросить ребят про else !!!!!!!!
+            FrequenceV29(datagramAPD.frequence_V29);//11
+            AdaptationCorrector(datagramAPD.adaptation_corrector);//13
         }
-        CableCorrectorOnTransmission(datagramAPD.cable_corrector_on_transmission);
-        CableCorrectorAtReception(datagramAPD.cable_corrector_at_reception);
+        else
+        {
+            ui->lineEdit_11->setText(QString("1800 Гц"));
+        }
+        CableCorrectorOnTransmission(datagramAPD.cable_corrector_on_transmission); //14
+        CableCorrectorAtReception(datagramAPD.cable_corrector_at_reception);//15
+    }
+    else
+    {
+        ui->lineEdit_8->clear();
+        ui->lineEdit_9->clear();
+        ui->lineEdit_11->clear();
+        ui->lineEdit_13->clear();
+        ui->lineEdit_14->clear();
+        ui->lineEdit_15->clear();
     }
     Scrambler(datagramAPD.scrambler);
-    AdaptationCorrector(datagramAPD.adaptation_corrector);
     if (ui->lineEdit->text() == QString("С1-ФЛ|ЛВС"))
     {
         // проверка канала С1-ФЛ
-        SpeedC1Fl(datagramAPD.speed_C1_FL);
+        SpeedC1Fl(datagramAPD.speed_C1_FL);//16
+    }
+    else
+    {
+        ui->lineEdit_16->clear();
     }
     if (ui->lineEdit_2->text() == QString("V42"))
     {
         // проверка V42
-        V42N400(datagramAPD.V42_N400);
-        ResponseModeV42(datagramAPD.response_mode_V42);
-        LoanAmountV42(datagramAPD.loan_amount_V42);
-        MaxLengthKadrV42(datagramAPD.max_length_kadr_V42);
+        V42N400(datagramAPD.V42_N400);//18
+        ResponseModeV42(datagramAPD.response_mode_V42);//27
+        LoanAmountV42(datagramAPD.loan_amount_V42);//32
+        MaxLengthKadrV42(datagramAPD.max_length_kadr_V42);//33
+    }
+    else
+    {
+        ui->lineEdit_18->clear();
+        ui->lineEdit_27->clear();
+        ui->lineEdit_32->clear();
+        ui->lineEdit_33->clear();
     }
     if (ui->lineEdit_2->text() == QString("Симплекс ОДК/ПДК") || ui->lineEdit_2->text() == QString("Дуплекс 2"))
     {
         // проверка алгоритма взаимодействия Симплекс ОДК/ПДК или Дуплекс 2
-        BlockLength(datagramAPD.block_length);
+        BlockLength(datagramAPD.block_length); //19 и 20
+    }
+    else
+    {
+        ui->lineEdit_19->clear();
+        ui->lineEdit_20->clear();
     }
     if (ui->lineEdit_2->text() == QString("Дуплекс 2"))
     {
         // проверка алгоритма взаимодействия Дуплекс 2
-        NubmersOfRequeries(datagramAPD.nubmers_of_requeries);
-        DephasingCriterion(datagramAPD.dephasing_criterion);
-        BlockDepth(datagramAPD.block_depth);
+        NubmersOfRequeries(datagramAPD.nubmers_of_requeries);//21
+        DephasingCriterion(datagramAPD.dephasing_criterion);//22
+        BlockDepth(datagramAPD.block_depth);//23
+    }
+    else
+    {
+        ui->lineEdit_21->clear();
+        ui->lineEdit_22->clear();
+        ui->lineEdit_23->clear();
     }
     if (ui->lineEdit_2->text() == QString("5Ц55 Арагва"))
     {
         // проверка 5Ц55 Арагва
-        Format5C55(datagramAPD.format_5C55);
-        InvTransfer(datagramAPD.inv_transfer);
-        InvReception(datagramAPD.inv_reception);
-        ResponseModeV42(datagramAPD.response_mode_V42);
+        Format5C55(datagramAPD.format_5C55);//24
+        InvTransfer(datagramAPD.inv_transfer);//25
+        InvReception(datagramAPD.inv_reception);//26
+    }
+    else
+    {
+        ui->lineEdit_24->clear();
+        ui->lineEdit_25->clear();
+        ui->lineEdit_26->clear();
     }
     if (ui->lineEdit_5->text() == QString("ПДК2") || ui->lineEdit_5->text() == QString("ОДК2"))
     {
-        AddDataODK2PDK2(datagramAPD.add_data_ODK2_PDK2);
+        AddDataODK2PDK2(datagramAPD.add_data_ODK2_PDK2);//29
+    }
+    else
+    {
+        ui->lineEdit_29->clear();
     }
     V42T400PDKTStart(datagramAPD.V_42_T400_PDK_T_start);
     V42T400PDKTStop(datagramAPD.V_42_T400_PDK_T_stop);
@@ -734,6 +801,32 @@ void MainWindow::getDatagramAPD(DatagramAPD datagramAPD)
 
 void MainWindow::on_pushButton_clicked()
 {
+    datagramAPDMain.kod_byte = 0x02;
+    // channel
+    if (ui->radioButton->isChecked()){datagramAPDMain.channel = CHANNEL_C1_TCH_LVC;}
+    if (ui->radioButton_2->isChecked()){datagramAPDMain.channel = CHANNEL_C1_FL_LVC;}
+    if (ui->radioButton_3->isChecked()){datagramAPDMain.channel = CHANNEL_C1_TCH_C1_FL;}
+    // interaction_algorithm
+    if (ui->radioButton_4->isChecked()){datagramAPDMain.interaction_algorithm = INTERACTION_ALGORITHM_ODK_PDK;}
+    if (ui->radioButton_5->isChecked()){datagramAPDMain.interaction_algorithm = INTERACTION_ALGORITHM_DUPLEX_2;}
+    if (ui->radioButton_6->isChecked()){datagramAPDMain.interaction_algorithm = INTERACTION_ALGORITHM_5C55_ARAGVA;}
+    if (ui->radioButton_62->isChecked()){datagramAPDMain.interaction_algorithm = INTERACTION_ALGORITHM_V42;}
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////
+    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPDMain), 18);
+    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
+    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
+
+    emit changeTab(0);
+
+
+
 //    DatagramAPD datagramAPD;
 //    std::memset(&datagramAPD, 0, sizeof(datagramAPD));
 //    datagramAPD.start_byte = START_BYTE;
@@ -752,20 +845,19 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_radioButton_clicked()
 {
-    datagramAPDMain.kod_byte = 0x02;
-    datagramAPDMain.channel = CHANNEL_C1_TCH_LVC;
-    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPDMain), 18);
-    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
-    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
+//    datagramAPDMain.kod_byte = 0x02;
+//    datagramAPDMain.channel = CHANNEL_C1_TCH_LVC;
+//    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPDMain), 18);
+//    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
+//    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
 }
-
 
 void MainWindow::on_radioButton_2_clicked()
 {
-    datagramAPDMain.kod_byte = 0x02;
-    datagramAPDMain.channel = CHANNEL_C1_FL_LVC;
-    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPDMain), 18);
-    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
-    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
+//    datagramAPDMain.kod_byte = 0x02;
+//    datagramAPDMain.channel = CHANNEL_C1_FL_LVC;
+//    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPDMain), 18);
+//    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
+//    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
 }
 

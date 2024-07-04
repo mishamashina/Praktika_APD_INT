@@ -15,10 +15,10 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="1">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -29,7 +29,7 @@
          <rect>
           <x>20</x>
           <y>10</y>
-          <width>601</width>
+          <width>731</width>
           <height>851</height>
          </rect>
         </property>
@@ -41,7 +41,7 @@
           <rect>
            <x>12</x>
            <y>33</y>
-           <width>571</width>
+           <width>681</width>
            <height>802</height>
           </rect>
          </property>
@@ -227,7 +227,7 @@
           <item row="23" column="0">
            <widget class="QLabel" name="label_31">
             <property name="text">
-             <string>Значение таймер Т401/Тстоп (V42 ПДК1/ПДК2+ВКЛ танг):</string>
+             <string>Значение таймер Т401/Тстоп (V42, ПДК1/ПДК2+ВКЛ танг):</string>
             </property>
            </widget>
           </item>
@@ -425,8 +425,8 @@
        <widget class="QGroupBox" name="groupBox_13">
         <property name="geometry">
          <rect>
-          <x>660</x>
-          <y>10</y>
+          <x>830</x>
+          <y>20</y>
           <width>465</width>
           <height>269</height>
          </rect>
@@ -482,7 +482,7 @@
            <item row="0" column="0">
             <widget class="QLabel" name="label_17">
              <property name="text">
-              <string>Разрешение управления тангентой:</string>
+              <string>Разрешение управления тангентой (ПДК1/ПДК2):</string>
              </property>
             </widget>
            </item>
@@ -521,7 +521,7 @@
            <item row="0" column="0">
             <widget class="QLabel" name="label_13">
              <property name="text">
-              <string>Адаптация корректора:</string>
+              <string>Адаптация корректора (С1-ТЧ):</string>
              </property>
             </widget>
            </item>
@@ -539,7 +539,7 @@
            <item row="0" column="0">
             <widget class="QLabel" name="label_14">
              <property name="text">
-              <string>Корректор кабеля на передаче:</string>
+              <string>Корректор кабеля на передаче (С1-ТЧ):</string>
              </property>
             </widget>
            </item>
@@ -560,7 +560,7 @@
            <item row="0" column="0">
             <widget class="QLabel" name="label_15">
              <property name="text">
-              <string>Корректор кабеля на приеме:</string>
+              <string>Корректор кабеля на приеме (С1-ТЧ):</string>
              </property>
             </widget>
            </item>

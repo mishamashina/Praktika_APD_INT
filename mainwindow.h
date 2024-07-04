@@ -18,8 +18,6 @@ public:
     UdpSocket *udp;
     DatagramAPD datagramAPDMain;
 
-    void changeEvent(QEvent *event);
-
     void Channel(char data);
     void InteractionAlgorithm(char data);
     void Plume(char data);
@@ -63,6 +61,9 @@ private slots:
     void on_radioButton_clicked();
 
     void on_radioButton_2_clicked();
+
+signals:
+    void changeTab(int index);
 
 private:
     Ui::MainWindow *ui;
