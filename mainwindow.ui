@@ -837,6 +837,9 @@
              <property name="text">
               <string>Данные к ООД поступают из канала без инверсии</string>
              </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
             </widget>
            </item>
            <item row="5" column="0">
@@ -860,6 +863,9 @@
             <widget class="QLineEdit" name="lineEdit_42">
              <property name="text">
               <string>Данные от ООД поступают в канал без инверсии</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
