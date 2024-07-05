@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
        <number>1</number>
@@ -456,7 +456,7 @@
            </item>
           </layout>
          </item>
-         <item row="1" column="0">
+         <item row="2" column="0">
           <layout class="QFormLayout" name="formLayout_13">
            <item row="0" column="0">
             <widget class="QLabel" name="label_6">
@@ -477,7 +477,7 @@
            </item>
           </layout>
          </item>
-         <item row="2" column="0">
+         <item row="3" column="0">
           <layout class="QFormLayout" name="formLayout_12">
            <item row="0" column="0">
             <widget class="QLabel" name="label_17">
@@ -498,25 +498,7 @@
            </item>
           </layout>
          </item>
-         <item row="3" column="0">
-          <layout class="QFormLayout" name="formLayout_11">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_12">
-             <property name="text">
-              <string>Скремблер:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_12">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="4" column="0">
+         <item row="5" column="0">
           <layout class="QFormLayout" name="formLayout_10">
            <item row="0" column="0">
             <widget class="QLabel" name="label_13">
@@ -534,7 +516,7 @@
            </item>
           </layout>
          </item>
-         <item row="5" column="0">
+         <item row="6" column="0">
           <layout class="QFormLayout" name="formLayout_9">
            <item row="0" column="0">
             <widget class="QLabel" name="label_14">
@@ -555,7 +537,7 @@
            </item>
           </layout>
          </item>
-         <item row="6" column="0">
+         <item row="7" column="0">
           <layout class="QFormLayout" name="formLayout_8">
            <item row="0" column="0">
             <widget class="QLabel" name="label_15">
@@ -569,6 +551,24 @@
              <property name="text">
               <string/>
              </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QFormLayout" name="formLayout_11">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Скремблер:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineEdit_12">
              <property name="readOnly">
               <bool>true</bool>
              </property>
@@ -674,8 +674,8 @@
        <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>890</x>
-          <y>480</y>
+          <x>1070</x>
+          <y>470</y>
           <width>301</width>
           <height>201</height>
          </rect>

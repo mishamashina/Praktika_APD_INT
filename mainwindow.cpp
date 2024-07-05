@@ -800,16 +800,18 @@ void MainWindow::getDatagramAPD(DatagramAPD datagramAPD)
         {
             ui->lineEdit_10->clear();
         }
-        if (ui->lineEdit_8->text() == QString("9600 V29") || ui->lineEdit_8->text() == QString("7200 V29") || ui->lineEdit_8->text() == QString("4800 V29"))
-        {
-            // проверка скорости
-            FrequenceV29(datagramAPD.frequence_V29);//11
-            AdaptationCorrector(datagramAPD.adaptation_corrector);//13
-        }
-        else
-        {
-            ui->lineEdit_11->setText(QString("1800 Гц"));
-        }
+//        if (ui->lineEdit_8->text() == QString("9600 V29") || ui->lineEdit_8->text() == QString("7200 V29") || ui->lineEdit_8->text() == QString("4800 V29"))
+//        {
+//            // проверка скорости
+//            FrequenceV29(datagramAPD.frequence_V29);//11
+//            AdaptationCorrector(datagramAPD.adaptation_corrector);//13
+//        }
+//        else
+//        {
+//            ui->lineEdit_11->setText(QString("1800 Гц"));
+//        }
+        FrequenceV29(datagramAPD.frequence_V29);//11
+        AdaptationCorrector(datagramAPD.adaptation_corrector);//13
         CableCorrectorOnTransmission(datagramAPD.cable_corrector_on_transmission); //14
         CableCorrectorAtReception(datagramAPD.cable_corrector_at_reception);//15
     }
@@ -1152,40 +1154,4 @@ void MainWindow::on_pushButton_clicked()
     udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
 
     emit changeTab(0);
-
-
-
-//    DatagramAPD datagramAPD;
-//    std::memset(&datagramAPD, 0, sizeof(datagramAPD));
-//    datagramAPD.start_byte = START_BYTE;
-//    datagramAPD.kod_byte = 0x02;
-//    datagramAPD.channel = 0b00;
-//    datagramAPD.plume = 0b0;
-//    datagramAPD.interaction_algorithm = 0x7;
-//    datagramAPD.end_byte = 0x05;
-//    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPD), 18);
-//    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
-//    //udp->printDatagramAPD(datagramAPD);
-////    char tmp[] = {0x21,0x02,0x1c,0x00,0x00,0x62,0x00,0x04,0x00,0x018,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x05};
-//    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
 }
-
-
-void MainWindow::on_radioButton_clicked()
-{
-//    datagramAPDMain.kod_byte = 0x02;
-//    datagramAPDMain.channel = CHANNEL_C1_TCH_LVC;
-//    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPDMain), 18);
-//    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
-//    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
-}
-
-void MainWindow::on_radioButton_2_clicked()
-{
-//    datagramAPDMain.kod_byte = 0x02;
-//    datagramAPDMain.channel = CHANNEL_C1_FL_LVC;
-//    QByteArray byteArray(reinterpret_cast<char*>(&datagramAPDMain), 18);
-//    qDebug() << "Отправка датаграммы  " << byteArray.toHex(' ');
-//    udp->udpSocket->writeDatagram(byteArray, QHostAddress("192.168.5.2"), 12345);
-}
-

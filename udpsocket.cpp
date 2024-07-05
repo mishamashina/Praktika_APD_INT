@@ -41,6 +41,8 @@ void UdpSocket::readDatagramAPD()
 
             printDatagramAPD(datagramAPD);
 
+
+
 //            datagramAPD.interaction_algorithm = 0b0110;
 //            datagramAPD.PDK = 0b01;
 //            datagramAPD.UZO = 0b01;
